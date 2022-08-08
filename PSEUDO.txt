@@ -1,0 +1,34 @@
+Requirements for the assignment:
+
+1. Click start button - timer starts & first question appears
+
+2. Presented with another question once question is answered
+
+3. Incorrect answer removes time from timer
+
+4. Quiz if done when timer reaches 0 or all questions were answered.
+
+5. Save scores & initials once quiz is finished.
+    - have button to clear scores if wanted
+
+
+Appearance:
+
+1. Heading of page and start button beneath. View scores link in top left, timer in top right
+
+2. Have multiple choice questions displayed
+    - highlight answer options on hover
+    - have answer result display once answered (e.g. correct or incorrect)
+        - have correct in green, incorrect in red
+
+3. Quiz results where you can submit your initials
+
+4. High score page: display high scores & have option to go back or clear scores.
+
+NOTE: 
+    - have all slections/buttons "highlight" when hovering 
+    - pointer when hovering on buttons
+    - score will be any time remaining
+    - order high scores in order from high to low.
+
+"This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write."
