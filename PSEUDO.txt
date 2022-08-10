@@ -31,4 +31,34 @@ NOTE:
     - score will be any time remaining
     - order high scores in order from high to low.
 
+
 "This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write."
+
+
+To-do:
+
+1. Create sections/divs of the different page content (start, questions, initials, & highscores) to make them hidden vs displayed
+
+!!!!!!! NOTE: Start with everything on the webpge that is needed & have all of the different features perform properly before styling !!!!!!
+
+2. Starting Page: create heading, description of the quiz/rules, & start button
+    - Start button call function to begin the game (the main content of page, the questions/answers)
+    - Link to highscores (DO AFTER THAT PART IS FUNCTIONING)
+    - Timer section displayed in corner (but no counting down yet)
+
+3. Questions Page: display question & crresponding answers
+    - Once displayed, focus on correct vs incorrect displayed after answer is selected
+    - Work on timer counting down during quiz
+    - Subtract time on wrong answers
+    - When time = 0, call funtion to display initial page
+
+4. Initial Page: create input to enter intials & submit button. Display score from that round right above input.
+    - two buttons (see highscores & go back) call function on click to either highscore page or starting page
+
+5. Highscore Page: display highscores with matching initials & go back button.
+    - go back button to go to starting page
+
+Final touches After all or most of the page is functioning:
+
+- style the overall webpage (button colors/highlights, font sizing, etc.)
+- display: none for the parts that are not being run/used
