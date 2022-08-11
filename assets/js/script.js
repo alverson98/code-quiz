@@ -11,6 +11,9 @@ var startButton = document.getElementById("start-button");
 
 // Question Page Variables
 var questionPage = document.getElementById("question-page");
+var showQuestion = document.getElementById("show-question");
+var showAnswers = document.getElementById("show-answers");
+var answerStatus = document.getElementById("answer-status");
 
 // Initial Page Variables
 var initialPage = document.getElementById("initial-page");
@@ -64,25 +67,38 @@ var q5 = {
 
 // Array with all of the question variables
 var questions = [q1, q2, q3, q4, q5];
+console.log(questions);
 
 // Setting timer - 15 seconds/question
 var quizTime = questions.length * 15;
 console.log(quizTime);
 
 // Starting Page
-startButton.addEventListener("click", function () {
+startButton.addEventListener("click", function (event) {
+  event.preventDefault;
   beginQuiz();
 });
 
-// Begin the game - moving to questions
-// Question Page
+// Begin the quiz
 function beginQuiz() {
+  // Timer for quiz
   var quizTimer = setInterval(function () {
     quizTime--;
     timer.textContent = quizTime;
+    displayQuestions();
 
     if (quizTime === 0) {
       clearInterval(quizTimer);
+      // Go to initial page once timer done
     }
   }, 1000);
+
+  // Questions
+  function displayQuestions() {
+    for (var i = 0; i < questions.length; i++) {
+      if (i === 1) {
+
+      }
+    }
+  }
 }
