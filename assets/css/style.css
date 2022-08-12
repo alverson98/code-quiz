@@ -1,0 +1,91 @@
+:root {
+  --brown: #a88f82;
+  --tan: #f5e1d5;
+  --teal: #71a8a7;
+  --lightteal: #d5f5f5;
+  --light: #fffaf7;
+}
+
+#header {
+  background-color: var(--teal);
+  color: var(--light);
+  padding: 15px 20px 15px 20px;
+  border-radius: 10px;
+}
+
+#high-score-button {
+  padding: 4px 6px 4px 6px;
+  margin: 7px 0px 12px 0px;
+  font-size: 15px;
+}
+.time {
+  margin: 12px 0px 7px 0px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#timer {
+  margin: 12px 0px 7px 0px;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+#starting-page,
+#question-page,
+#initial-page,
+#high-score-page {
+  background-color: var(--lightteal);
+  border-radius: 10px;
+  padding: 20px 15px 20px 15px;
+}
+
+#starting-page h1 {
+  font-size: 55px;
+}
+
+#starting-page p {
+  font-size: 22px;
+}
+
+#start-button {
+  padding: 4px 6px 4px 6px;
+  margin: 7px 0px 12px 0px;
+  font-size: 15px;
+}
+
+#show-question {
+  font-size: 45px;
+}
+
+#show-answers,
+#question-page button {
+  font-size: 22px;
+  margin: 10px 0px 10px 0px;
+}
+
+.final,
+#final-score {
+  font-size: 35px;
+}
+
+.initial {
+  font-size: 20px;
+}
+
+#high-score-page h2 {
+  font-size: 50px;
+}
+
+#high-scores {
+  font-size: 30px;
+  background-color: var(--teal);
+  color: var(--light);
+  text-align: center;
+  padding: 10px 50px 10px 50px;
+  border: 2px solid var(--brown);
+  border-radius: 10px;
+  margin-right: 15px ;
+}
+#high-score-page button {
+    font-size: 15px;
+}
