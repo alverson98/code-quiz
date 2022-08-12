@@ -108,6 +108,7 @@ function startTimer() {
 
 // Questions
 function displayQuestions() {
+  // Display status of other pages
   startingPage.style.display = "none";
   initialPage.style.display = "none";
   highScorePage.style.display = "none";
@@ -126,6 +127,13 @@ function displayQuestions() {
 
       answerButton.addEventListener("click", function (event) {
         event.preventDefault;
+        function removeButtons(parent) {
+          while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+          }
+        }
+        const listAnswers = document.querySelector("#show-answers");
+        removeButtons(listAnswers);
         showQ2();
       });
     }
@@ -143,6 +151,13 @@ function displayQuestions() {
     }
     answerButton.addEventListener("click", function (event) {
       event.preventDefault;
+      function removeButtons(parent) {
+        while (parent.firstChild) {
+          parent.removeChild(parent.firstChild);
+        }
+      }
+      const listAnswers = document.querySelector("#show-answers");
+      removeButtons(listAnswers);
       showQ3();
     });
   }
@@ -159,6 +174,13 @@ function displayQuestions() {
     }
     answerButton.addEventListener("click", function (event) {
       event.preventDefault;
+      function removeButtons(parent) {
+        while (parent.firstChild) {
+          parent.removeChild(parent.firstChild);
+        }
+      }
+      const listAnswers = document.querySelector("#show-answers");
+      removeButtons(listAnswers);
       showQ4();
     });
   }
@@ -175,6 +197,13 @@ function displayQuestions() {
     }
     answerButton.addEventListener("click", function (event) {
       event.preventDefault;
+      function removeButtons(parent) {
+        while (parent.firstChild) {
+          parent.removeChild(parent.firstChild);
+        }
+      }
+      const listAnswers = document.querySelector("#show-answers");
+      removeButtons(listAnswers);
       showQ5();
     });
   }
@@ -191,6 +220,13 @@ function displayQuestions() {
     }
     answerButton.addEventListener("click", function (event) {
       event.preventDefault;
+      function removeButtons(parent) {
+        while (parent.firstChild) {
+          parent.removeChild(parent.firstChild);
+        }
+      }
+      const listAnswers = document.querySelector("#show-answers");
+      removeButtons(listAnswers);
       showQ6();
     });
   }
@@ -212,27 +248,32 @@ function displayQuestions() {
   }
 }
 function displayInitialPage() {
+  // Display status of other pages
   startingPage.style.display = "none";
   questionPage.style.display = "none";
   timer.style.display = "none";
   highScorePage.style.display = "noneß";
   initialPage.style.display = "block";
-  var finalTime = (finalScore.textContent = quizTime);
 
+  var finalTime = (finalScore.textContent = quizTime);
   submitButton.addEventListener("click", function (event) {
     event.preventDefault;
-    var final = quizTime;
+
+    // Storing game score data
     localStorage.setItem("final-score", finalTime);
     localStorage.setItem("initial", initialInput.value);
     displayHighScorePage();
   });
 }
 function displayHighScorePage() {
+  // Display status of other pages
   startingPage.style.display = "none";
   questionPage.style.display = "none";
   header.style.display = "none";
   initialPage.style.display = "none";
   highScorePage.style.display = "block";
+
+  // Getting high score data to display
   var highScore = localStorage.getItem("final-score");
   var highSInitial = localStorage.getItem("initial");
   highScores.textContent = highScore + "     " + "     " + highSInitial;
