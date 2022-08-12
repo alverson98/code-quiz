@@ -82,12 +82,18 @@ startingPage.style.display = "block";
 header.style.display = "block";
 initialPage.style.display = "none";
 highScorePage.style.display = "none";
+
 // EVENT LISTENERS
 //Start button- starts quiz
 startButton.addEventListener("click", function (event) {
   event.preventDefault;
   startTimer();
   displayQuestions();
+});
+// High Score Button
+highScoreButton.addEventListener("click", function (event) {
+  event.preventDefault;
+  displayHighScorePage();
 });
 
 // Starting timer
@@ -116,7 +122,11 @@ function displayQuestions() {
       var answerList = document.createElement("li");
       showAnswers.appendChild(answerList);
       var answerButton = document.createElement("button");
-      console.log(answerButton);
+
+      // Assigning array index as button value
+      answerButton.value = i;
+      console.log(answerButton.value);
+
       answerList.appendChild(answerButton);
       var answerOptions = q1.answers[i];
       answerButton.textContent = answerOptions;
@@ -142,6 +152,11 @@ function displayQuestions() {
       var answerlist = document.createElement("li");
       showAnswers.appendChild(answerlist);
       var answerButton = document.createElement("button");
+
+      // Assigning array index as button value
+      answerButton.value = i;
+      console.log(answerButton.value);
+
       answerlist.appendChild(answerButton);
       var answerOptions = q2.answers[i];
       answerButton.textContent = answerOptions;
@@ -167,6 +182,11 @@ function displayQuestions() {
       var answerlist = document.createElement("li");
       showAnswers.appendChild(answerlist);
       var answerButton = document.createElement("button");
+
+      // Assigning array index as button value
+      answerButton.value = i;
+      console.log(answerButton.value);
+
       answerlist.appendChild(answerButton);
       var answerOptions = q3.answers[i];
       answerButton.textContent = answerOptions;
@@ -192,6 +212,11 @@ function displayQuestions() {
       var answerlist = document.createElement("li");
       showAnswers.appendChild(answerlist);
       var answerButton = document.createElement("button");
+
+      // Assigning array index as button value
+      answerButton.value = i;
+      console.log(answerButton.value);
+
       answerlist.appendChild(answerButton);
       var answerOptions = q4.answers[i];
       answerButton.textContent = answerOptions;
@@ -217,6 +242,11 @@ function displayQuestions() {
       var answerlist = document.createElement("li");
       showAnswers.appendChild(answerlist);
       var answerButton = document.createElement("button");
+
+      // Assigning array index as button value
+      answerButton.value = i;
+      console.log(answerButton.value);
+
       answerlist.appendChild(answerButton);
       var answerOptions = q5.answers[i];
       answerButton.textContent = answerOptions;
@@ -242,6 +272,11 @@ function displayQuestions() {
       var answerlist = document.createElement("li");
       showAnswers.appendChild(answerlist);
       var answerButton = document.createElement("button");
+
+      // Assigning array index as button value
+      answerButton.value = i;
+      console.log(answerButton.value);
+
       answerlist.appendChild(answerButton);
       var answerOptions = q6.answers[i];
       answerButton.textContent = answerOptions;
@@ -252,49 +287,49 @@ function displayQuestions() {
       });
     }
   }
-  function displayInitialPage() {
-    // Display status of other pages
-    startingPage.style.display = "none";
-    questionPage.style.display = "none";
-    timer.style.display = "none";
-    highScorePage.style.display = "noneß";
-    initialPage.style.display = "block";
+}
+function displayInitialPage() {
+  // Display status of other pages
+  startingPage.style.display = "none";
+  questionPage.style.display = "none";
+  timer.style.display = "none";
+  highScorePage.style.display = "noneß";
+  initialPage.style.display = "block";
 
-    setInterval(quizTime);
+  setInterval(quizTime);
 
-    var finalTime = (finalScore.textContent = quizTime);
-    submitButton.addEventListener("click", function (event) {
-      event.preventDefault;
+  var finalTime = (finalScore.textContent = quizTime);
+  submitButton.addEventListener("click", function (event) {
+    event.preventDefault;
 
-      // Storing game score data
-      localStorage.setItem("final-score", finalTime);
-      localStorage.setItem("initial", initialInput.value);
-      displayHighScorePage();
-    });
+    // Storing game score data
+    localStorage.setItem("final-score", finalTime);
+    localStorage.setItem("initial", initialInput.value);
+    displayHighScorePage();
+  });
+}
+function displayHighScorePage() {
+  // Display status of other pages
+  startingPage.style.display = "none";
+  questionPage.style.display = "none";
+  header.style.display = "none";
+  initialPage.style.display = "none";
+  highScorePage.style.display = "block";
+
+  // Getting high score data to display
+  var highScore = localStorage.getItem("final-score");
+  var highSInitial = localStorage.getItem("initial");
+  highScores.textContent = highScore + "     " + "     " + highSInitial;
+
+  // Clear High Score
+  clearScoreButton.addEventListener("click", function (event) {
+    event.preventDefault;
+    highScores.textContent = "";
+  });
+
+  // Go back button
+  function reload() {
+    reload = location.reload();
   }
-  function displayHighScorePage() {
-    // Display status of other pages
-    startingPage.style.display = "none";
-    questionPage.style.display = "none";
-    header.style.display = "none";
-    initialPage.style.display = "none";
-    highScorePage.style.display = "block";
-
-    // Getting high score data to display
-    var highScore = localStorage.getItem("final-score");
-    var highSInitial = localStorage.getItem("initial");
-    highScores.textContent = highScore + "     " + "     " + highSInitial;
-
-    // Clear High Score
-    clearScoreButton.addEventListener("click", function (event) {
-      event.preventDefault;
-      highScores.textContent = "";
-    });
-
-    // Go back button
-    function reload() {
-      reload = location.reload();
-    }
-    backButton.addEventListener("click", reload, false);
-  }
+  backButton.addEventListener("click", reload, false);
 }
