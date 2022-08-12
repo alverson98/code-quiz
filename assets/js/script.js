@@ -20,6 +20,7 @@ var incorrect = "Incorrect!";
 
 // Initial Page Variables
 var initialPage = document.getElementById("initial-page");
+var finalScore = document.getElementById("final-score");
 var initialInput = document.getElementById("initial");
 var submitButton = document.getElementById("submit-button");
 
@@ -92,7 +93,7 @@ function startTimer() {
 
     if (quizTime === 0) {
       clearInterval(quizTimer);
-      // Go to initial page once timer done
+      initialPage();
     }
   }, 1000);
 }
@@ -197,6 +198,27 @@ function beginQuiz() {
         var answerOptions = q6.answers[i];
         answerButton.textContent = answerOptions;
       }
+      answerButton.addEventListener("click", function (event) {
+        event.preventDefault;
+        initialPage();
+      });
     }
+  }
+  function initialPage() {
+    timer.style.display = "none";
+    var finalTime = (finalScore.textContent = quizTime);
+
+    submitButton.addEventListener("click", function (event) {
+      event.preventDefault;
+      var final = quizTime;
+      localStorage.setItem("final-score", finalTime);
+      localStorage.setItem("initial", initialInput.value);
+      highScorePage();
+    });
+  }
+  function highScorePage() {
+    var highScore = localStorage.getItem("final-score");
+    var highSInitial = localStorage.getItem("initial");
+    highScores.textContent = highScore + "     " + "     " + highSInitial;
   }
 }
