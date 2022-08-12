@@ -39,7 +39,7 @@ Tools used to complete this project:
 
 Use this application as a good and fun way to test your basic JavaScript knowledge. This can be used by anyone who is interested to learn where their knowledge stands.
 
-![Screenshot of Code Quiz]()
+![Screenshot of Code Quiz](./assets/images/code-quiz.jpeg)
 
 ### Links
 
