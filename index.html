@@ -11,7 +11,7 @@
     <!-- Header with Highscores & Timer -->
     <header id="header">
       <button id="high-score-button">View High Scores</button>
-      <div>Time: <span id="timer"></span></div>
+      <div class="time">Time: <span id="timer"></span></div>
     </header>
     <!-- Starting Page -->
     <div id="starting-page">
@@ -31,8 +31,8 @@
     </main>
     <!-- Initial Page -->
     <div id="initial-page">
-      <p id="final-score"></p>
-      <label for="initial">Enter Initials:</label>
+      <p class="final">Final Score: <span id="final-score"></span></p>
+      <label for="initial" class="initial">Enter Initials:</label>
       <input type="text" id="initial" placeholder="Example: AB" />
       <button id="submit-button">Submit</button>
     </div>
