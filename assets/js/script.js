@@ -78,13 +78,12 @@ var quizTime = questions.length * 15;
 console.log(quizTime);
 
 // Removing uneeded pages before quiz starts
-function onLoad() {
-  initialPage.style.display = "none";
-  highScorePage.style.display = "none";
-}
-onLoad();
+startingPage.style.display = "block";
+header.style.display = "block";
+initialPage.style.display = "none";
+highScorePage.style.display = "none";
 // EVENT LISTENERS
-//Start button- starts game
+//Start button- starts quiz
 startButton.addEventListener("click", function (event) {
   event.preventDefault;
   startTimer();
@@ -103,9 +102,6 @@ function startTimer() {
     }
   }, 1000);
 }
-
-// Begin the quiz
-
 // Questions
 function displayQuestions() {
   // Display status of other pages
@@ -127,6 +123,7 @@ function displayQuestions() {
 
       answerButton.addEventListener("click", function (event) {
         event.preventDefault;
+        // Removes answer buttons for next question
         function removeButtons(parent) {
           while (parent.firstChild) {
             parent.removeChild(parent.firstChild);
@@ -148,18 +145,20 @@ function displayQuestions() {
       answerlist.appendChild(answerButton);
       var answerOptions = q2.answers[i];
       answerButton.textContent = answerOptions;
-    }
-    answerButton.addEventListener("click", function (event) {
-      event.preventDefault;
-      function removeButtons(parent) {
-        while (parent.firstChild) {
-          parent.removeChild(parent.firstChild);
+
+      answerButton.addEventListener("click", function (event) {
+        event.preventDefault;
+        // Removes answer buttons for next question
+        function removeButtons(parent) {
+          while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+          }
         }
-      }
-      const listAnswers = document.querySelector("#show-answers");
-      removeButtons(listAnswers);
-      showQ3();
-    });
+        const listAnswers = document.querySelector("#show-answers");
+        removeButtons(listAnswers);
+        showQ3();
+      });
+    }
   }
   // Display 3rd question
   function showQ3() {
@@ -171,18 +170,20 @@ function displayQuestions() {
       answerlist.appendChild(answerButton);
       var answerOptions = q3.answers[i];
       answerButton.textContent = answerOptions;
-    }
-    answerButton.addEventListener("click", function (event) {
-      event.preventDefault;
-      function removeButtons(parent) {
-        while (parent.firstChild) {
-          parent.removeChild(parent.firstChild);
+
+      answerButton.addEventListener("click", function (event) {
+        event.preventDefault;
+        // Removes answer buttons for next question
+        function removeButtons(parent) {
+          while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+          }
         }
-      }
-      const listAnswers = document.querySelector("#show-answers");
-      removeButtons(listAnswers);
-      showQ4();
-    });
+        const listAnswers = document.querySelector("#show-answers");
+        removeButtons(listAnswers);
+        showQ4();
+      });
+    }
   }
   // Display 4th question
   function showQ4() {
@@ -194,18 +195,20 @@ function displayQuestions() {
       answerlist.appendChild(answerButton);
       var answerOptions = q4.answers[i];
       answerButton.textContent = answerOptions;
-    }
-    answerButton.addEventListener("click", function (event) {
-      event.preventDefault;
-      function removeButtons(parent) {
-        while (parent.firstChild) {
-          parent.removeChild(parent.firstChild);
+
+      answerButton.addEventListener("click", function (event) {
+        event.preventDefault;
+        // Removes answer buttons for next question
+        function removeButtons(parent) {
+          while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+          }
         }
-      }
-      const listAnswers = document.querySelector("#show-answers");
-      removeButtons(listAnswers);
-      showQ5();
-    });
+        const listAnswers = document.querySelector("#show-answers");
+        removeButtons(listAnswers);
+        showQ5();
+      });
+    }
   }
   // Display 5th question
   function showQ5() {
@@ -217,18 +220,20 @@ function displayQuestions() {
       answerlist.appendChild(answerButton);
       var answerOptions = q5.answers[i];
       answerButton.textContent = answerOptions;
-    }
-    answerButton.addEventListener("click", function (event) {
-      event.preventDefault;
-      function removeButtons(parent) {
-        while (parent.firstChild) {
-          parent.removeChild(parent.firstChild);
+
+      answerButton.addEventListener("click", function (event) {
+        event.preventDefault;
+        // Removes answer buttons for next question
+        function removeButtons(parent) {
+          while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+          }
         }
-      }
-      const listAnswers = document.querySelector("#show-answers");
-      removeButtons(listAnswers);
-      showQ6();
-    });
+        const listAnswers = document.querySelector("#show-answers");
+        removeButtons(listAnswers);
+        showQ6();
+      });
+    }
   }
   // Display 6th question
   function showQ6() {
@@ -240,41 +245,56 @@ function displayQuestions() {
       answerlist.appendChild(answerButton);
       var answerOptions = q6.answers[i];
       answerButton.textContent = answerOptions;
+
+      answerButton.addEventListener("click", function (event) {
+        event.preventDefault;
+        displayInitialPage();
+      });
     }
-    answerButton.addEventListener("click", function (event) {
+  }
+  function displayInitialPage() {
+    // Display status of other pages
+    startingPage.style.display = "none";
+    questionPage.style.display = "none";
+    timer.style.display = "none";
+    highScorePage.style.display = "noneß";
+    initialPage.style.display = "block";
+
+    setInterval(quizTime);
+
+    var finalTime = (finalScore.textContent = quizTime);
+    submitButton.addEventListener("click", function (event) {
       event.preventDefault;
-      displayInitialPage();
+
+      // Storing game score data
+      localStorage.setItem("final-score", finalTime);
+      localStorage.setItem("initial", initialInput.value);
+      displayHighScorePage();
     });
   }
-}
-function displayInitialPage() {
-  // Display status of other pages
-  startingPage.style.display = "none";
-  questionPage.style.display = "none";
-  timer.style.display = "none";
-  highScorePage.style.display = "noneß";
-  initialPage.style.display = "block";
+  function displayHighScorePage() {
+    // Display status of other pages
+    startingPage.style.display = "none";
+    questionPage.style.display = "none";
+    header.style.display = "none";
+    initialPage.style.display = "none";
+    highScorePage.style.display = "block";
 
-  var finalTime = (finalScore.textContent = quizTime);
-  submitButton.addEventListener("click", function (event) {
-    event.preventDefault;
+    // Getting high score data to display
+    var highScore = localStorage.getItem("final-score");
+    var highSInitial = localStorage.getItem("initial");
+    highScores.textContent = highScore + "     " + "     " + highSInitial;
 
-    // Storing game score data
-    localStorage.setItem("final-score", finalTime);
-    localStorage.setItem("initial", initialInput.value);
-    displayHighScorePage();
-  });
-}
-function displayHighScorePage() {
-  // Display status of other pages
-  startingPage.style.display = "none";
-  questionPage.style.display = "none";
-  header.style.display = "none";
-  initialPage.style.display = "none";
-  highScorePage.style.display = "block";
+    // Clear High Score
+    clearScoreButton.addEventListener("click", function (event) {
+      event.preventDefault;
+      highScores.textContent = "";
+    });
 
-  // Getting high score data to display
-  var highScore = localStorage.getItem("final-score");
-  var highSInitial = localStorage.getItem("initial");
-  highScores.textContent = highScore + "     " + "     " + highSInitial;
+    // Go back button
+    function reload() {
+      reload = location.reload();
+    }
+    backButton.addEventListener("click", reload, false);
+  }
 }
