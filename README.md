@@ -6,13 +6,27 @@ DU Boot Camp Module 4 Web APIs Challenge: Code Quiz
 
 ## Description
 
-### Main Content
+This application is a fun quiz to test your knowledge on some basic JavaScript. The purpose of building this application was to apply newly learned vanilla JavaScript skills and further develop them with practice. The main goal was to produce a coding quiz with a polished UI that features dynamically updated HTML/CSS through JavaScript.
 
-A summarized list of the main content in the portfolio:
+### Requirements
+
+A list of requirements derrived from acceptance criteria and personal goals:
+
+- Clean, polished user interface.
+- Start button begins series of questions being displayed, starting with the first.
+- Presented with next question once previous one is answered.
+- Incorrect answer removes time from timer.
+- Quiz if finished when timer hits zero, or all questions were answered.
+- Scores and inititals are saved at end of quiz.
 
 ### Skills Learned/ Improved
 
 Here is a list of some skills I learned and/or improved throughout this project:
+
+- JavaScript syntax
+- When to use funtions in JS
+- Dynamically updating HTML/CSS with JS
+- Creating timers using JS
 
 Tools used to complete this project:
 
@@ -22,6 +36,8 @@ Tools used to complete this project:
 - GitHub
 
 ## Usage
+
+Use this application as a good and fun way to test your basic JavaScript knowledge. This can be used by anyone who is interested to learn where their knowledge stands.
 
 ![Screenshot of Code Quiz]()
 
