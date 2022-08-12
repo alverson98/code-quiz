@@ -77,12 +77,18 @@ console.log(questions);
 var quizTime = questions.length * 15;
 console.log(quizTime);
 
+// Removing uneeded pages before quiz starts
+function onLoad() {
+  initialPage.style.display = "none";
+  highScorePage.style.display = "none";
+}
+onLoad();
 // EVENT LISTENERS
 //Start button- starts game
 startButton.addEventListener("click", function (event) {
   event.preventDefault;
   startTimer();
-  beginQuiz();
+  displayQuestions();
 });
 
 // Starting timer
@@ -93,132 +99,141 @@ function startTimer() {
 
     if (quizTime === 0) {
       clearInterval(quizTimer);
-      initialPage();
+      displayInitialPage();
     }
   }, 1000);
 }
 
 // Begin the quiz
-function beginQuiz() {
-  displayQuestions();
 
-  // Questions
-  function displayQuestions() {
-    // Display 1st question
-    showQ1();
-    function showQ1() {
-      showQuestion.textContent = questions[0].question;
-      for (let i = 0; i < q1.answers.length; i++) {
-        var answerList = document.createElement("li");
-        showAnswers.appendChild(answerList);
-        var answerButton = document.createElement("button");
-        console.log(answerButton);
-        answerList.appendChild(answerButton);
-        var answerOptions = q1.answers[i];
-        answerButton.textContent = answerOptions;
+// Questions
+function displayQuestions() {
+  startingPage.style.display = "none";
+  initialPage.style.display = "none";
+  highScorePage.style.display = "none";
+  // Display 1st question
+  showQ1();
+  function showQ1() {
+    showQuestion.textContent = questions[0].question;
+    for (let i = 0; i < q1.answers.length; i++) {
+      var answerList = document.createElement("li");
+      showAnswers.appendChild(answerList);
+      var answerButton = document.createElement("button");
+      console.log(answerButton);
+      answerList.appendChild(answerButton);
+      var answerOptions = q1.answers[i];
+      answerButton.textContent = answerOptions;
 
-        answerButton.addEventListener("click", function (event) {
-          event.preventDefault;
-          showQ2();
-        });
-      }
-    }
-    // Display 2nd question
-    function showQ2() {
-      showQuestion.textContent = questions[1].question;
-      for (let i = 0; i < q2.answers.length; i++) {
-        var answerlist = document.createElement("li");
-        showAnswers.appendChild(answerlist);
-        var answerButton = document.createElement("button");
-        answerlist.appendChild(answerButton);
-        var answerOptions = q2.answers[i];
-        answerButton.textContent = answerOptions;
-      }
       answerButton.addEventListener("click", function (event) {
         event.preventDefault;
-        showQ3();
-      });
-    }
-    // Display 3rd question
-    function showQ3() {
-      showQuestion.textContent = questions[2].question;
-      for (let i = 0; i < q3.answers.length; i++) {
-        var answerlist = document.createElement("li");
-        showAnswers.appendChild(answerlist);
-        var answerButton = document.createElement("button");
-        answerlist.appendChild(answerButton);
-        var answerOptions = q3.answers[i];
-        answerButton.textContent = answerOptions;
-      }
-      answerButton.addEventListener("click", function (event) {
-        event.preventDefault;
-        showQ4();
-      });
-    }
-    // Display 4th question
-    function showQ4() {
-      showQuestion.textContent = questions[3].question;
-      for (let i = 0; i < q4.answers.length; i++) {
-        var answerlist = document.createElement("li");
-        showAnswers.appendChild(answerlist);
-        var answerButton = document.createElement("button");
-        answerlist.appendChild(answerButton);
-        var answerOptions = q4.answers[i];
-        answerButton.textContent = answerOptions;
-      }
-      answerButton.addEventListener("click", function (event) {
-        event.preventDefault;
-        showQ5();
-      });
-    }
-    // Display 5th question
-    function showQ5() {
-      showQuestion.textContent = questions[4].question;
-      for (let i = 0; i < q5.answers.length; i++) {
-        var answerlist = document.createElement("li");
-        showAnswers.appendChild(answerlist);
-        var answerButton = document.createElement("button");
-        answerlist.appendChild(answerButton);
-        var answerOptions = q5.answers[i];
-        answerButton.textContent = answerOptions;
-      }
-      answerButton.addEventListener("click", function (event) {
-        event.preventDefault;
-        showQ6();
-      });
-    }
-    // Display 6th question
-    function showQ6() {
-      showQuestion.textContent = questions[5].question;
-      for (let i = 0; i < q6.answers.length; i++) {
-        var answerlist = document.createElement("li");
-        showAnswers.appendChild(answerlist);
-        var answerButton = document.createElement("button");
-        answerlist.appendChild(answerButton);
-        var answerOptions = q6.answers[i];
-        answerButton.textContent = answerOptions;
-      }
-      answerButton.addEventListener("click", function (event) {
-        event.preventDefault;
-        initialPage();
+        showQ2();
       });
     }
   }
-  function initialPage() {
-    timer.style.display = "none";
-    var finalTime = (finalScore.textContent = quizTime);
-
-    submitButton.addEventListener("click", function (event) {
+  // Display 2nd question
+  function showQ2() {
+    showQuestion.textContent = questions[1].question;
+    for (let i = 0; i < q2.answers.length; i++) {
+      var answerlist = document.createElement("li");
+      showAnswers.appendChild(answerlist);
+      var answerButton = document.createElement("button");
+      answerlist.appendChild(answerButton);
+      var answerOptions = q2.answers[i];
+      answerButton.textContent = answerOptions;
+    }
+    answerButton.addEventListener("click", function (event) {
       event.preventDefault;
-      var final = quizTime;
-      localStorage.setItem("final-score", finalTime);
-      localStorage.setItem("initial", initialInput.value);
-      highScorePage();
+      showQ3();
     });
   }
-  function highScorePage() {
-    var highScore = localStorage.getItem("final-score");
-    var highSInitial = localStorage.getItem("initial");
-    highScores.textContent = highScore + "     " + "     " + highSInitial;
+  // Display 3rd question
+  function showQ3() {
+    showQuestion.textContent = questions[2].question;
+    for (let i = 0; i < q3.answers.length; i++) {
+      var answerlist = document.createElement("li");
+      showAnswers.appendChild(answerlist);
+      var answerButton = document.createElement("button");
+      answerlist.appendChild(answerButton);
+      var answerOptions = q3.answers[i];
+      answerButton.textContent = answerOptions;
+    }
+    answerButton.addEventListener("click", function (event) {
+      event.preventDefault;
+      showQ4();
+    });
   }
+  // Display 4th question
+  function showQ4() {
+    showQuestion.textContent = questions[3].question;
+    for (let i = 0; i < q4.answers.length; i++) {
+      var answerlist = document.createElement("li");
+      showAnswers.appendChild(answerlist);
+      var answerButton = document.createElement("button");
+      answerlist.appendChild(answerButton);
+      var answerOptions = q4.answers[i];
+      answerButton.textContent = answerOptions;
+    }
+    answerButton.addEventListener("click", function (event) {
+      event.preventDefault;
+      showQ5();
+    });
+  }
+  // Display 5th question
+  function showQ5() {
+    showQuestion.textContent = questions[4].question;
+    for (let i = 0; i < q5.answers.length; i++) {
+      var answerlist = document.createElement("li");
+      showAnswers.appendChild(answerlist);
+      var answerButton = document.createElement("button");
+      answerlist.appendChild(answerButton);
+      var answerOptions = q5.answers[i];
+      answerButton.textContent = answerOptions;
+    }
+    answerButton.addEventListener("click", function (event) {
+      event.preventDefault;
+      showQ6();
+    });
+  }
+  // Display 6th question
+  function showQ6() {
+    showQuestion.textContent = questions[5].question;
+    for (let i = 0; i < q6.answers.length; i++) {
+      var answerlist = document.createElement("li");
+      showAnswers.appendChild(answerlist);
+      var answerButton = document.createElement("button");
+      answerlist.appendChild(answerButton);
+      var answerOptions = q6.answers[i];
+      answerButton.textContent = answerOptions;
+    }
+    answerButton.addEventListener("click", function (event) {
+      event.preventDefault;
+      displayInitialPage();
+    });
+  }
+}
+function displayInitialPage() {
+  startingPage.style.display = "none";
+  questionPage.style.display = "none";
+  timer.style.display = "none";
+  highScorePage.style.display = "noneß";
+  initialPage.style.display = "block";
+  var finalTime = (finalScore.textContent = quizTime);
+
+  submitButton.addEventListener("click", function (event) {
+    event.preventDefault;
+    var final = quizTime;
+    localStorage.setItem("final-score", finalTime);
+    localStorage.setItem("initial", initialInput.value);
+    displayHighScorePage();
+  });
+}
+function displayHighScorePage() {
+  startingPage.style.display = "none";
+  questionPage.style.display = "none";
+  header.style.display = "none";
+  initialPage.style.display = "none";
+  highScorePage.style.display = "block";
+  var highScore = localStorage.getItem("final-score");
+  var highSInitial = localStorage.getItem("initial");
+  highScores.textContent = highScore + "     " + "     " + highSInitial;
 }
