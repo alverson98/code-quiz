@@ -138,6 +138,7 @@ function displayQuestions() {
           answerStatus.textContent = correct;
         } else if (answerButton !== q1.correctA) {
           answerStatus.textContent = incorrect;
+          quizTime -= 10;
         }
 
         // Removes answer buttons for next question
@@ -176,6 +177,7 @@ function showQ2() {
         answerStatus.textContent = correct;
       } else if (answerButton !== q2.correctA) {
         answerStatus.textContent = incorrect;
+        quizTime -= 10;
       }
       // Removes answer buttons for next question
       function removeButtons(parent) {
@@ -212,6 +214,7 @@ function showQ3() {
         answerStatus.textContent = correct;
       } else if (answerButton !== q3.correctA) {
         answerStatus.textContent = incorrect;
+        quizTime -= 10;
       }
       // Removes answer buttons for next question
       function removeButtons(parent) {
@@ -248,6 +251,7 @@ function showQ4() {
         answerStatus.textContent = correct;
       } else if (answerButton !== q4.correctA) {
         answerStatus.textContent = incorrect;
+        quizTime -= 10;
       }
       // Removes answer buttons for next question
       function removeButtons(parent) {
@@ -284,6 +288,7 @@ function showQ5() {
         answerStatus.textContent = correct;
       } else if (answerButton !== q5.correctA) {
         answerStatus.textContent = incorrect;
+        quizTime -= 10;
       }
       // Removes answer buttons for next question
       function removeButtons(parent) {
@@ -320,6 +325,7 @@ function showQ6() {
         answerStatus.textContent = correct;
       } else if (answerButton !== q6.correctA) {
         answerStatus.textContent = incorrect;
+        quizTime -= 10;
       }
       displayInitialPage();
     });
