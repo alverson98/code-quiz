@@ -32,17 +32,17 @@ var clearScoreButton = document.getElementById("clear-score-button");
 
 // Questions & Answers
 var q1 = {
-  question: "Commonly used data types DO NOT include...",
+  question: "1. Commonly used data types DO NOT include...",
   answers: ["Strings", "Booleans", "Alerts", "Numbers"],
   correctA: 2,
 };
 var q2 = {
-  question: "The condition in an if / else statement is enclosed with ____.",
+  question: "2. The condition in an if / else statement is enclosed with ____.",
   answers: ["Quotes", "Curly brackets", "Parenthesis", "Square brackets"],
   correctA: 2,
 };
 var q3 = {
-  question: "Arrays in JavaScript can be used to store ____.",
+  question: "3. Arrays in JavaScript can be used to store ____.",
   answers: [
     "Numbers & Strings",
     "Other arrays",
@@ -53,13 +53,13 @@ var q3 = {
 };
 var q4 = {
   question:
-    "String values must be enclosed within _____ when being assigned to variables.",
+    "4. String values must be enclosed within _____ when being assigned to variables.",
   answers: ["Commas", "Curly brackets", "Quotes", "Parenthesis"],
   correctA: 2,
 };
 var q5 = {
   question:
-    "A very useful tool used during development and debugging for printing content to the debugger is...",
+    "5. A very useful tool used during development and debugging for printing content to the debugger is...",
   answers: ["JavaScript", "Terminal/ Bash", "For loops", "Console.log"],
   correctA: 3,
 };
@@ -108,6 +108,29 @@ function startTimer() {
     }
   }, 1000);
 }
+
+function createAnswerListener(answerId, answerButton, nextPageFunction) {
+  answerButton.addEventListener("click", function (event) {
+    event.preventDefault;
+    if (answerId === q1.correctA) {
+      answerStatus.textContent = correct;
+    } else {
+      answerStatus.textContent = incorrect;
+      quizTime -= 10;
+    }
+
+    // Removes answer buttons for next question
+    function removeButtons(parent) {
+      while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+      }
+    }
+    const listAnswers = document.querySelector("#show-answers");
+    removeButtons(listAnswers);
+    nextPageFunction();
+  });
+}
+
 // Questions
 function displayQuestions() {
   // Display status of other pages
@@ -122,213 +145,119 @@ function displayQuestions() {
       var answerList = document.createElement("li");
       showAnswers.appendChild(answerList);
       var answerButton = document.createElement("button");
-      console.log(answerButton);
-      // Assigning array index as button value
-      var answerButtonValue = (answerButton.value = i);
-      console.log(answerButtonValue);
 
       answerList.appendChild(answerButton);
       var answerOptions = q1.answers[i];
       answerButton.textContent = answerOptions;
 
-      answerButton.addEventListener("click", function (event) {
-        event.preventDefault;
-        // Show answer status
-        if (answerButton === q1.correctA) {
-          answerStatus.textContent = correct;
-        } else if (answerButton !== q1.correctA) {
-          answerStatus.textContent = incorrect;
-          quizTime -= 10;
-        }
-
-        // Removes answer buttons for next question
-        function removeButtons(parent) {
-          while (parent.firstChild) {
-            parent.removeChild(parent.firstChild);
-          }
-        }
-        const listAnswers = document.querySelector("#show-answers");
-        removeButtons(listAnswers);
-        showQ2();
-      });
+      createAnswerListener(i, answerButton, showQ2);
     }
   }
-}
-// Display 2nd question
-function showQ2() {
-  showQuestion.textContent = questions[1].question;
-  for (let i = 0; i < q2.answers.length; i++) {
-    var answerlist = document.createElement("li");
-    showAnswers.appendChild(answerlist);
-    var answerButton = document.createElement("button");
 
-    // Assigning array index as button value
-    answerButton.value = i;
-    console.log(answerButton.value);
+  // Display 2nd question
+  function showQ2() {
+    showQuestion.textContent = questions[1].question;
+    for (let i = 0; i < q2.answers.length; i++) {
+      var answerlist = document.createElement("li");
+      showAnswers.appendChild(answerlist);
+      var answerButton = document.createElement("button");
 
-    answerlist.appendChild(answerButton);
-    var answerOptions = q2.answers[i];
-    answerButton.textContent = answerOptions;
+      // Assigning an id for answer buttons
+      var buttonId = (answerButton.id = answerButtonValue);
+      // Assigning array index as button value
+      var answerButtonValue = (answerButton.value = i);
+      console.log(answerButtonValue);
 
-    answerButton.addEventListener("click", function (event) {
-      event.preventDefault;
-      // Show answer status
-      if (answerButton === q2.correctA) {
-        answerStatus.textContent = correct;
-      } else if (answerButton !== q2.correctA) {
-        answerStatus.textContent = incorrect;
-        quizTime -= 10;
-      }
-      // Removes answer buttons for next question
-      function removeButtons(parent) {
-        while (parent.firstChild) {
-          parent.removeChild(parent.firstChild);
-        }
-      }
-      const listAnswers = document.querySelector("#show-answers");
-      removeButtons(listAnswers);
-      showQ3();
-    });
+      answerlist.appendChild(answerButton);
+      var answerOptions = q2.answers[i];
+      answerButton.textContent = answerOptions;
+
+      createAnswerListener(i, answerButton, showQ3);
+    }
   }
-}
-// Display 3rd question
-function showQ3() {
-  showQuestion.textContent = questions[2].question;
-  for (let i = 0; i < q3.answers.length; i++) {
-    var answerlist = document.createElement("li");
-    showAnswers.appendChild(answerlist);
-    var answerButton = document.createElement("button");
+  // Display 3rd question
+  function showQ3() {
+    showQuestion.textContent = questions[2].question;
+    for (let i = 0; i < q3.answers.length; i++) {
+      var answerlist = document.createElement("li");
+      showAnswers.appendChild(answerlist);
+      var answerButton = document.createElement("button");
 
-    // Assigning array index as button value
-    answerButton.value = i;
-    console.log(answerButton.value);
+      // Assigning an id for answer buttons
+      var buttonId = (answerButton.id = answerButtonValue);
+      // Assigning array index as button value
+      var answerButtonValue = (answerButton.value = i);
+      console.log(answerButtonValue);
 
-    answerlist.appendChild(answerButton);
-    var answerOptions = q3.answers[i];
-    answerButton.textContent = answerOptions;
+      answerlist.appendChild(answerButton);
+      var answerOptions = q3.answers[i];
+      answerButton.textContent = answerOptions;
 
-    answerButton.addEventListener("click", function (event) {
-      event.preventDefault;
-      // Show answer status
-      if (answerButton === q3.correctA) {
-        answerStatus.textContent = correct;
-      } else if (answerButton !== q3.correctA) {
-        answerStatus.textContent = incorrect;
-        quizTime -= 10;
-      }
-      // Removes answer buttons for next question
-      function removeButtons(parent) {
-        while (parent.firstChild) {
-          parent.removeChild(parent.firstChild);
-        }
-      }
-      const listAnswers = document.querySelector("#show-answers");
-      removeButtons(listAnswers);
-      showQ4();
-    });
+      createAnswerListener(i, answerButton, showQ4);
+    }
   }
-}
-// Display 4th question
-function showQ4() {
-  showQuestion.textContent = questions[3].question;
-  for (let i = 0; i < q4.answers.length; i++) {
-    var answerlist = document.createElement("li");
-    showAnswers.appendChild(answerlist);
-    var answerButton = document.createElement("button");
+  // Display 4th question
+  function showQ4() {
+    showQuestion.textContent = questions[3].question;
+    for (let i = 0; i < q4.answers.length; i++) {
+      var answerlist = document.createElement("li");
+      showAnswers.appendChild(answerlist);
+      var answerButton = document.createElement("button");
 
-    // Assigning array index as button value
-    answerButton.value = i;
-    console.log(answerButton.value);
+      // Assigning an id for answer buttons
+      var buttonId = (answerButton.id = answerButtonValue);
+      // Assigning array index as button value
+      var answerButtonValue = (answerButton.value = i);
+      console.log(answerButtonValue);
 
-    answerlist.appendChild(answerButton);
-    var answerOptions = q4.answers[i];
-    answerButton.textContent = answerOptions;
+      answerlist.appendChild(answerButton);
+      var answerOptions = q4.answers[i];
+      answerButton.textContent = answerOptions;
 
-    answerButton.addEventListener("click", function (event) {
-      event.preventDefault;
-      // Show answer status
-      if (answerButton === q4.correctA) {
-        answerStatus.textContent = correct;
-      } else if (answerButton !== q4.correctA) {
-        answerStatus.textContent = incorrect;
-        quizTime -= 10;
-      }
-      // Removes answer buttons for next question
-      function removeButtons(parent) {
-        while (parent.firstChild) {
-          parent.removeChild(parent.firstChild);
-        }
-      }
-      const listAnswers = document.querySelector("#show-answers");
-      removeButtons(listAnswers);
-      showQ5();
-    });
+      createAnswerListener(i, answerButton, showQ5);
+    }
   }
-}
-// Display 5th question
-function showQ5() {
-  showQuestion.textContent = questions[4].question;
-  for (let i = 0; i < q5.answers.length; i++) {
-    var answerlist = document.createElement("li");
-    showAnswers.appendChild(answerlist);
-    var answerButton = document.createElement("button");
+  // Display 5th question
+  function showQ5() {
+    showQuestion.textContent = questions[4].question;
+    for (let i = 0; i < q5.answers.length; i++) {
+      var answerlist = document.createElement("li");
+      showAnswers.appendChild(answerlist);
+      var answerButton = document.createElement("button");
 
-    // Assigning array index as button value
-    answerButton.value = i;
-    console.log(answerButton.value);
+      // Assigning an id for answer buttons
+      var buttonId = (answerButton.id = answerButtonValue);
+      // Assigning array index as button value
+      var answerButtonValue = (answerButton.value = i);
+      console.log(answerButtonValue);
 
-    answerlist.appendChild(answerButton);
-    var answerOptions = q5.answers[i];
-    answerButton.textContent = answerOptions;
+      answerlist.appendChild(answerButton);
+      var answerOptions = q5.answers[i];
+      answerButton.textContent = answerOptions;
 
-    answerButton.addEventListener("click", function (event) {
-      event.preventDefault;
-      // Show answer status
-      if (answerButton === q5.correctA) {
-        answerStatus.textContent = correct;
-      } else if (answerButton !== q5.correctA) {
-        answerStatus.textContent = incorrect;
-        quizTime -= 10;
-      }
-      // Removes answer buttons for next question
-      function removeButtons(parent) {
-        while (parent.firstChild) {
-          parent.removeChild(parent.firstChild);
-        }
-      }
-      const listAnswers = document.querySelector("#show-answers");
-      removeButtons(listAnswers);
-      showQ6();
-    });
+      createAnswerListener(i, answerButton, showQ6);
+    }
   }
-}
-// Display 6th question
-function showQ6() {
-  showQuestion.textContent = questions[5].question;
-  for (let i = 0; i < q6.answers.length; i++) {
-    var answerlist = document.createElement("li");
-    showAnswers.appendChild(answerlist);
-    var answerButton = document.createElement("button");
+  // Display 6th question
+  function showQ6() {
+    showQuestion.textContent = questions[5].question;
+    for (let i = 0; i < q6.answers.length; i++) {
+      var answerlist = document.createElement("li");
+      showAnswers.appendChild(answerlist);
+      var answerButton = document.createElement("button");
 
-    // Assigning array index as button value
-    answerButton.value = i;
-    console.log(answerButton.value);
+      // Assigning an id for answer buttons
+      var buttonId = (answerButton.id = answerButtonValue);
+      // Assigning array index as button value
+      var answerButtonValue = (answerButton.value = i);
+      console.log(answerButtonValue);
 
-    answerlist.appendChild(answerButton);
-    var answerOptions = q6.answers[i];
-    answerButton.textContent = answerOptions;
+      answerlist.appendChild(answerButton);
+      var answerOptions = q6.answers[i];
+      answerButton.textContent = answerOptions;
 
-    answerButton.addEventListener("click", function (event) {
-      event.preventDefault;
-      // Show answer status
-      if (answerButton === q6.correctA) {
-        answerStatus.textContent = correct;
-      } else if (answerButton !== q6.correctA) {
-        answerStatus.textContent = incorrect;
-        quizTime -= 10;
-      }
-      displayInitialPage();
-    });
+      createAnswerListener(i, answerButton, displayInitialPage);
+    }
   }
 }
 
