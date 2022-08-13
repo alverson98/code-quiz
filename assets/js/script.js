@@ -297,11 +297,16 @@ function displayHighScorePage() {
   // Getting high score data to display
   var highScore = localStorage.getItem("final-score");
   var highSInitial = localStorage.getItem("initial");
-  highScores.textContent = highScore + " pts | " + highSInitial;
+  if (highScore === null) {
+    highScores.textContent = "No High Scores";
+  } else {
+    highScores.textContent = highScore + " pts | " + highSInitial;
+  }
 
   // Clear High Score
   clearScoreButton.addEventListener("click", function (event) {
     event.preventDefault;
+    localStorage.clear();
     highScores.style.display = "none";
   });
   // Go back button
