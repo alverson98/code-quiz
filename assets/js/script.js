@@ -26,7 +26,7 @@ var submitButton = document.getElementById("submit-button");
 
 // High Score Page Variables
 var highScorePage = document.getElementById("high-score-page");
-var highScores = document.getElementById("high-scores");
+var highScoresList = document.getElementById("high-scores-list");
 var backButton = document.getElementById("back-button");
 var clearScoreButton = document.getElementById("clear-score-button");
 
@@ -71,11 +71,9 @@ var q6 = {
 
 // Array with all of the question variables
 var questions = [q1, q2, q3, q4, q5, q6];
-console.log(questions);
 
 // Setting timer - 15 seconds/question
 var quizTime = questions.length * 15;
-console.log(quizTime);
 
 // Removing uneeded pages before quiz starts
 startingPage.style.display = "block";
@@ -171,7 +169,6 @@ function displayQuestions() {
       var buttonId = (answerButton.id = answerButtonValue);
       // Assigning array index as button value
       var answerButtonValue = (answerButton.value = i);
-      console.log(answerButtonValue);
 
       answerlist.appendChild(answerButton);
       var answerOptions = q2.answers[i];
@@ -192,7 +189,6 @@ function displayQuestions() {
       var buttonId = (answerButton.id = answerButtonValue);
       // Assigning array index as button value
       var answerButtonValue = (answerButton.value = i);
-      console.log(answerButtonValue);
 
       answerlist.appendChild(answerButton);
       var answerOptions = q3.answers[i];
@@ -213,7 +209,6 @@ function displayQuestions() {
       var buttonId = (answerButton.id = answerButtonValue);
       // Assigning array index as button value
       var answerButtonValue = (answerButton.value = i);
-      console.log(answerButtonValue);
 
       answerlist.appendChild(answerButton);
       var answerOptions = q4.answers[i];
@@ -234,7 +229,6 @@ function displayQuestions() {
       var buttonId = (answerButton.id = answerButtonValue);
       // Assigning array index as button value
       var answerButtonValue = (answerButton.value = i);
-      console.log(answerButtonValue);
 
       answerlist.appendChild(answerButton);
       var answerOptions = q5.answers[i];
@@ -255,7 +249,6 @@ function displayQuestions() {
       var buttonId = (answerButton.id = answerButtonValue);
       // Assigning array index as button value
       var answerButtonValue = (answerButton.value = i);
-      console.log(answerButtonValue);
 
       answerlist.appendChild(answerButton);
       var answerOptions = q6.answers[i];
@@ -273,8 +266,6 @@ function displayInitialPage() {
   timer.style.display = "none";
   highScorePage.style.display = "none";
   initialPage.style.display = "block";
-
-  setInterval(quizTime);
 
   var finalTime = (finalScore.textContent = quizTime);
   submitButton.addEventListener("click", function (event) {
@@ -295,10 +286,10 @@ function displayInitialPage() {
 
     localStorage.setItem("highScores", JSON.stringify(highScores));
 
-    displayHighScorePage();
+    displayHighScorePage(highScores);
   });
 }
-function displayHighScorePage() {
+function displayHighScorePage(highScores) {
   // Display status of other pages
   startingPage.style.display = "none";
   questionPage.style.display = "none";
@@ -307,19 +298,22 @@ function displayHighScorePage() {
   highScorePage.style.display = "block";
 
   // Getting high score data to display
-  var highScore = localStorage.getItem("final-score");
-  var highSInitial = localStorage.getItem("initial");
-  if (highScore === null) {
+  if (highScores === null) {
     highScores.textContent = "No High Scores";
   } else {
-    highScores.textContent = highScore + " pts | " + highSInitial;
+    for (i = 0; i < highScores.length; i++) {
+      var highScoreListItem = document.createElement("li");
+      highScoresList.appendChild(highScoreListItem);
+      highScoreListItem.textContent =
+        highScores[i].score + " pts | " + highScores[i].initial;
+    }
   }
 
   // Clear High Score
   clearScoreButton.addEventListener("click", function (event) {
     event.preventDefault;
     localStorage.clear();
-    highScores.style.display = "none";
+    highScoresList.style.display = "none";
   });
   // Go back button
   function reload() {
