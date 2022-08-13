@@ -109,10 +109,15 @@ function startTimer() {
   }, 1000);
 }
 
-function createAnswerListener(answerId, answerButton, nextPageFunction) {
+function createAnswerListener(
+  answerId,
+  answerButton,
+  nextPageFunction,
+  currentQuestion
+) {
   answerButton.addEventListener("click", function (event) {
     event.preventDefault;
-    if (answerId === q1.correctA) {
+    if (answerId === currentQuestion.correctA) {
       answerStatus.textContent = correct;
     } else {
       answerStatus.textContent = incorrect;
@@ -150,7 +155,7 @@ function displayQuestions() {
       var answerOptions = q1.answers[i];
       answerButton.textContent = answerOptions;
 
-      createAnswerListener(i, answerButton, showQ2);
+      createAnswerListener(i, answerButton, showQ2, q1);
     }
   }
 
@@ -172,7 +177,7 @@ function displayQuestions() {
       var answerOptions = q2.answers[i];
       answerButton.textContent = answerOptions;
 
-      createAnswerListener(i, answerButton, showQ3);
+      createAnswerListener(i, answerButton, showQ3, q2);
     }
   }
   // Display 3rd question
@@ -193,7 +198,7 @@ function displayQuestions() {
       var answerOptions = q3.answers[i];
       answerButton.textContent = answerOptions;
 
-      createAnswerListener(i, answerButton, showQ4);
+      createAnswerListener(i, answerButton, showQ4, q3);
     }
   }
   // Display 4th question
@@ -214,7 +219,7 @@ function displayQuestions() {
       var answerOptions = q4.answers[i];
       answerButton.textContent = answerOptions;
 
-      createAnswerListener(i, answerButton, showQ5);
+      createAnswerListener(i, answerButton, showQ5, q4);
     }
   }
   // Display 5th question
@@ -235,7 +240,7 @@ function displayQuestions() {
       var answerOptions = q5.answers[i];
       answerButton.textContent = answerOptions;
 
-      createAnswerListener(i, answerButton, showQ6);
+      createAnswerListener(i, answerButton, showQ6, q5);
     }
   }
   // Display 6th question
@@ -256,7 +261,7 @@ function displayQuestions() {
       var answerOptions = q6.answers[i];
       answerButton.textContent = answerOptions;
 
-      createAnswerListener(i, answerButton, displayInitialPage);
+      createAnswerListener(i, answerButton, displayInitialPage, q6);
     }
   }
 }
