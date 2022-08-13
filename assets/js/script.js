@@ -271,12 +271,7 @@ function displayInitialPage() {
   submitButton.addEventListener("click", function (event) {
     event.preventDefault;
 
-    var highScores = [];
-    var savedScores = localStorage.getItem("highScores");
-
-    if (savedScores !== null) {
-      highScores = JSON.parse(savedScores);
-    }
+    var highScores = getHighScores();
 
     var newHighScore = {
       initial: initialInput.value,
@@ -286,16 +281,29 @@ function displayInitialPage() {
 
     localStorage.setItem("highScores", JSON.stringify(highScores));
 
-    displayHighScorePage(highScores);
+    displayHighScorePage();
   });
 }
-function displayHighScorePage(highScores) {
+
+function getHighScores() {
+  var highScores = [];
+  var savedScores = localStorage.getItem("highScores");
+
+  if (savedScores !== null) {
+    highScores = JSON.parse(savedScores);
+  }
+  return highScores;
+}
+
+function displayHighScorePage() {
   // Display status of other pages
   startingPage.style.display = "none";
   questionPage.style.display = "none";
   header.style.display = "none";
   initialPage.style.display = "none";
   highScorePage.style.display = "block";
+
+  var highScores = getHighScores();
 
   // Getting high score data to display
   if (highScores === null) {
