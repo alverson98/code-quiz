@@ -311,6 +311,7 @@ function displayHighScorePage() {
   } else {
     for (i = 0; i < highScores.length; i++) {
       var highScoreListItem = document.createElement("li");
+      highScoreListItem.classList.add("high-score-item");
       highScoresList.appendChild(highScoreListItem);
       highScoreListItem.textContent =
         highScores[i].score + " pts | " + highScores[i].initial;

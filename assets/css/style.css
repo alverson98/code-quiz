@@ -76,7 +76,7 @@
   font-size: 50px;
 }
 
-#high-scores {
+.high-score-item {
   font-size: 30px;
   background-color: var(--teal);
   color: var(--light);
@@ -84,8 +84,9 @@
   padding: 10px 50px 10px 50px;
   border: 2px solid var(--brown);
   border-radius: 10px;
-  margin-right: 15px ;
+  margin-right: 15px;
 }
+
 #high-score-page button {
-    font-size: 15px;
+  font-size: 15px;
 }
