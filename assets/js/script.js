@@ -271,7 +271,7 @@ function displayInitialPage() {
   startingPage.style.display = "none";
   questionPage.style.display = "none";
   timer.style.display = "none";
-  highScorePage.style.display = "noneß";
+  highScorePage.style.display = "none";
   initialPage.style.display = "block";
 
   setInterval(quizTime);
@@ -280,9 +280,21 @@ function displayInitialPage() {
   submitButton.addEventListener("click", function (event) {
     event.preventDefault;
 
-    // Storing game score data
-    localStorage.setItem("final-score", finalTime);
-    localStorage.setItem("initial", initialInput.value);
+    var highScores = [];
+    var savedScores = localStorage.getItem("highScores");
+
+    if (savedScores !== null) {
+      highScores = JSON.parse(savedScores);
+    }
+
+    var newHighScore = {
+      initial: initialInput.value,
+      score: finalTime,
+    };
+    highScores.push(newHighScore);
+
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+
     displayHighScorePage();
   });
 }
